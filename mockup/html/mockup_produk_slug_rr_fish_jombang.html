@@ -1,0 +1,399 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-sans);}
+
+.wrap{display:flex;flex-direction:column;gap:32px;padding:1.5rem 0;}
+
+.label-section{font-size:11px;color:var(--color-text-secondary);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:20px;padding:0 12px;}
+
+.device-row{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;}
+
+.phone-frame{
+  width:375px;flex-shrink:0;
+  background:var(--color-background-secondary);
+  border-radius:var(--border-radius-lg);
+  padding:16px;
+}
+.phone{
+  width:100%;background:var(--color-background-primary);
+  border-radius:20px;border:0.5px solid var(--color-border-secondary);
+  overflow:hidden;font-size:13px;color:var(--color-text-primary);
+}
+.phone-scroll{max-height:640px;overflow-y:auto;scrollbar-width:none;}
+.phone-scroll::-webkit-scrollbar{display:none;}
+
+.desktop-frame{
+  flex:1;min-width:560px;
+  background:var(--color-background-secondary);
+  border-radius:var(--border-radius-lg);
+  padding:16px;
+}
+.desktop-bar{
+  background:var(--color-background-primary);
+  border-radius:8px 8px 0 0;
+  border:0.5px solid var(--color-border-secondary);
+  border-bottom:none;
+  padding:8px 12px;
+  display:flex;align-items:center;gap:6px;
+}
+.db-dot{width:10px;height:10px;border-radius:50%;}
+.desktop-body{
+  background:var(--color-background-primary);
+  border:0.5px solid var(--color-border-secondary);
+  border-radius:0 0 8px 8px;
+  overflow:hidden;
+  font-size:13px;color:var(--color-text-primary);
+}
+
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);}
+.nav-logo{display:flex;align-items:center;gap:7px;}
+.nav-icon{width:26px;height:26px;background:#1D9E75;border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.nav-icon svg{width:14px;height:14px;fill:#fff;}
+.nav-name{font-weight:500;font-size:13px;}
+.nav-name span{color:#1D9E75;}
+.nav-links{display:flex;gap:16px;font-size:12px;color:var(--color-text-secondary);}
+.nav-links a{color:var(--color-text-secondary);text-decoration:none;}
+.nav-links a:hover{color:var(--color-text-primary);}
+.hamburger{display:flex;flex-direction:column;gap:3px;cursor:pointer;}
+.hamburger div{width:17px;height:1.5px;background:var(--color-text-primary);border-radius:2px;}
+
+.breadcrumb{padding:10px 16px;font-size:11px;color:var(--color-text-secondary);border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:5px;}
+.breadcrumb a{color:var(--color-text-secondary);text-decoration:none;}
+.breadcrumb span{color:var(--color-text-primary);}
+
+.product-hero-img{
+  width:100%;aspect-ratio:4/3;
+  background:#EAF3DE;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.product-hero-img img{width:100%;height:100%;object-fit:cover;}
+.img-badge{
+  position:absolute;top:10px;left:10px;
+  background:#1D9E75;color:#fff;
+  font-size:10px;padding:3px 10px;border-radius:20px;font-weight:500;
+}
+
+.product-info-section{padding:16px;}
+.product-name-big{font-size:18px;font-weight:500;margin-bottom:4px;}
+.product-tagline{font-size:12px;color:var(--color-text-secondary);margin-bottom:12px;line-height:1.5;}
+
+.price-block{
+  background:var(--color-background-secondary);
+  border-radius:var(--border-radius-md);
+  padding:12px;margin-bottom:14px;
+}
+.price-block-title{font-size:10px;color:var(--color-text-secondary);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.05em;}
+.price-tiers{display:flex;flex-direction:column;gap:6px;}
+.price-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;}
+.price-size{color:var(--color-text-secondary);}
+.price-val{font-weight:500;color:#0F6E56;}
+
+.badges-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.badge{font-size:10px;padding:3px 10px;border-radius:20px;font-weight:500;}
+.badge-green{background:#EAF3DE;color:#27500A;}
+.badge-amber{background:#FAEEDA;color:#633806;}
+.badge-blue{background:#E6F1FB;color:#0C447C;}
+
+.desc-section{margin-bottom:14px;}
+.desc-title{font-size:12px;font-weight:500;margin-bottom:6px;}
+.desc-text{font-size:12px;color:var(--color-text-secondary);line-height:1.6;}
+.desc-list{margin-top:6px;padding-left:14px;}
+.desc-list li{font-size:12px;color:var(--color-text-secondary);margin-bottom:3px;}
+
+.divider{height:0.5px;background:var(--color-border-tertiary);margin:14px 0;}
+
+.sticky-cta{
+  padding:12px 16px;
+  border-top:0.5px solid var(--color-border-tertiary);
+  background:var(--color-background-primary);
+  display:flex;gap:8px;align-items:center;
+}
+.btn-wa-full{
+  flex:1;background:#25D366;color:#fff;border:none;
+  padding:11px;border-radius:var(--border-radius-md);
+  font-size:13px;font-weight:500;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.btn-outline-sm{
+  padding:11px 14px;border:0.5px solid var(--color-border-secondary);
+  border-radius:var(--border-radius-md);font-size:12px;
+  background:transparent;color:var(--color-text-primary);cursor:pointer;
+}
+
+.modal-overlay{
+  min-height:500px;background:rgba(0,0,0,0.45);
+  display:flex;align-items:flex-end;justify-content:center;
+  border-radius:0 0 20px 20px;
+}
+.modal-sheet{
+  background:var(--color-background-primary);
+  border-radius:16px 16px 0 0;
+  width:100%;padding:16px 16px 24px;
+}
+.modal-handle{width:32px;height:3px;background:var(--color-border-secondary);border-radius:2px;margin:0 auto 12px;}
+.modal-title{font-size:14px;font-weight:500;margin-bottom:2px;}
+.modal-sub{font-size:11px;color:var(--color-text-secondary);margin-bottom:14px;}
+.field{margin-bottom:12px;}
+.field label{display:block;font-size:11px;color:var(--color-text-secondary);font-weight:500;margin-bottom:4px;}
+.field input{width:100%;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:8px 10px;font-size:12px;background:var(--color-background-primary);color:var(--color-text-primary);}
+.radio-group{display:flex;flex-direction:column;gap:6px;}
+.radio-opt{display:flex;align-items:center;gap:8px;padding:8px 10px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);font-size:12px;cursor:pointer;}
+.radio-opt input{width:13px;height:13px;accent-color:#1D9E75;flex-shrink:0;}
+.btn-submit-wa{width:100%;background:#25D366;color:#fff;border:none;padding:12px;border-radius:var(--border-radius-md);font-size:13px;font-weight:500;cursor:pointer;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:6px;}
+
+.desktop-inner{padding:20px 24px;}
+.desktop-product-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
+.desktop-left{}
+.desktop-product-img{width:100%;aspect-ratio:4/3;background:#EAF3DE;border-radius:var(--border-radius-lg);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;margin-bottom:10px;}
+.desktop-product-img img{width:100%;height:100%;object-fit:cover;}
+.thumb-row{display:flex;gap:6px;}
+.thumb{width:52px;height:52px;border-radius:var(--border-radius-md);background:#EAF3DE;display:flex;align-items:center;justify-content:center;border:0.5px solid var(--color-border-tertiary);overflow:hidden;cursor:pointer;}
+.thumb img{width:100%;height:100%;object-fit:cover;}
+.thumb.active{border:1.5px solid #1D9E75;}
+.desktop-right{}
+.desktop-name{font-size:18px;font-weight:500;margin-bottom:4px;}
+.desktop-tagline{font-size:12px;color:var(--color-text-secondary);margin-bottom:12px;line-height:1.5;}
+
+.form-card{
+  background:var(--color-background-secondary);
+  border-radius:var(--border-radius-lg);
+  padding:14px;margin-top:16px;
+}
+.form-card-title{font-size:12px;font-weight:500;margin-bottom:12px;color:var(--color-text-primary);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.form-field label{display:block;font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;}
+.form-field input{width:100%;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:7px 10px;font-size:12px;background:var(--color-background-primary);color:var(--color-text-primary);}
+.form-full{margin-bottom:10px;}
+.form-full label{display:block;font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;}
+.form-full input{width:100%;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:7px 10px;font-size:12px;background:var(--color-background-primary);color:var(--color-text-primary);}
+.radio-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;}
+.radio-grid-opt{display:flex;align-items:center;gap:6px;padding:7px 10px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);font-size:11px;cursor:pointer;}
+.radio-grid-opt input{width:12px;height:12px;accent-color:#1D9E75;flex-shrink:0;}
+.btn-wa-desktop{width:100%;background:#25D366;color:#fff;border:none;padding:11px;border-radius:var(--border-radius-md);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;margin-top:4px;}
+
+.wa-icon{width:16px;height:16px;flex-shrink:0;}
+
+@media(max-width:680px){
+  .desktop-frame{display:none;}
+  .device-row{justify-content:center;}
+}
+@media(min-width:681px) and (max-width:900px){
+  .phone-frame{width:320px;}
+}
+</style>
+
+<div class="wrap">
+
+<div class="label-section">tampilan mobile</div>
+
+<div class="device-row">
+  <div class="phone-frame">
+    <div class="phone">
+      <div class="nav">
+        <div class="nav-logo">
+          <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+          <div class="nav-name">RR Fish <span>Jombang</span></div>
+        </div>
+        <div class="hamburger"><div></div><div></div><div></div></div>
+      </div>
+
+      <div class="phone-scroll">
+        <div class="breadcrumb">
+          <a href="#">Beranda</a>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+          <span>Bibit Gurame</span>
+        </div>
+
+        <div class="product-hero-img">
+          <img src="/mnt/user-data/uploads/FB_IMG_1775458518680.jpg" alt="Bibit Gurame" />
+          <div class="img-badge">Musim Panen</div>
+        </div>
+
+        <div class="product-info-section">
+          <div class="product-name-big">Bibit Gurame</div>
+          <div class="product-tagline">Bibit unggul siap tebar dari kolam budidaya RR Fish Jombang. Sehat, aktif, dan dipanen fresh sesuai pesanan.</div>
+
+          <div class="badges-row">
+            <span class="badge badge-green">Tersedia</span>
+            <span class="badge badge-green">Musim Panen</span>
+            <span class="badge badge-blue">Jawa & Kalimantan</span>
+          </div>
+
+          <div class="price-block">
+            <div class="price-block-title">Harga per ukuran</div>
+            <div class="price-tiers">
+              <div class="price-row"><span class="price-size">Ukuran 3 cm</span><span class="price-val">Rp 900/ekor</span></div>
+              <div class="price-row"><span class="price-size">Ukuran 5 cm</span><span class="price-val">Rp 1.200/ekor</span></div>
+              <div class="price-row"><span class="price-size">Ukuran 7 cm</span><span class="price-val">Rp 1.600/ekor</span></div>
+            </div>
+          </div>
+
+          <div class="desc-section">
+            <div class="desc-title">Informasi produk</div>
+            <div class="desc-text">Bibit Gurame RR Fish Jombang dibudidayakan secara intensif dengan pakan berkualitas dan air bersih. Cocok untuk budidaya skala kecil hingga tambak besar.</div>
+            <ul class="desc-list">
+              <li>Ukuran tersedia: 3, 5, dan 7 cm</li>
+              <li>Minimum order: 100 ekor</li>
+              <li>Pengiriman: Jawa & Kalimantan via ekspedisi/cargo</li>
+              <li>Packing: sistem oksigen, aman untuk pengiriman jauh</li>
+            </ul>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="desc-section">
+            <div class="desc-title">Cara memesan</div>
+            <div class="desc-text">Klik tombol di bawah, isi form singkat, lalu pesan otomatis akan terisi di WhatsApp. Konfirmasi harga dan jadwal kirim langsung bersama kami.</div>
+          </div>
+        </div>
+
+        <div class="sticky-cta">
+          <button class="btn-outline-sm">Bagikan</button>
+          <button class="btn-wa-full" onclick="document.getElementById('mobile-modal').style.display='flex'">
+            <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Pre-order via WhatsApp
+          </button>
+        </div>
+
+        <div id="mobile-modal" class="modal-overlay" style="display:none;" onclick="if(event.target===this)this.style.display='none'">
+          <div class="modal-sheet">
+            <div class="modal-handle"></div>
+            <div class="modal-title">Form pre-order</div>
+            <div class="modal-sub">Bibit Gurame — RR Fish Jombang</div>
+            <div class="field"><label>Nama lengkap</label><input type="text" placeholder="Nama kamu" /></div>
+            <div class="field"><label>Asal / kota</label><input type="text" placeholder="Contoh: Surabaya" /></div>
+            <div class="field">
+              <label>Jumlah pesanan</label>
+              <div class="radio-group">
+                <label class="radio-opt"><input type="radio" name="m-jml" value="100–500 ekor"> 100 – 500 ekor</label>
+                <label class="radio-opt"><input type="radio" name="m-jml" value="500–1.000 ekor"> 500 – 1.000 ekor</label>
+                <label class="radio-opt"><input type="radio" name="m-jml" value=">1.000 ekor"> lebih dari 1.000 ekor</label>
+              </div>
+            </div>
+            <div class="field">
+              <label>Metode pengiriman</label>
+              <div class="radio-group">
+                <label class="radio-opt"><input type="radio" name="m-krm" value="Ambil sendiri"> Ambil sendiri</label>
+                <label class="radio-opt"><input type="radio" name="m-krm" value="Ekspedisi/cargo (Jawa)"> Ekspedisi / cargo (Jawa)</label>
+                <label class="radio-opt"><input type="radio" name="m-krm" value="Ekspedisi/cargo (Kalimantan)"> Ekspedisi / cargo (Kalimantan)</label>
+                <label class="radio-opt"><input type="radio" name="m-krm" value="Kurir/kendaraan lokal"> Kurir / kendaraan lokal</label>
+              </div>
+            </div>
+            <div class="field"><label>Catatan (opsional)</label><input type="text" placeholder="Ukuran spesifik, waktu kirim, dll." /></div>
+            <button class="btn-submit-wa">
+              <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              Lanjut via WhatsApp
+            </button>
+            <button onclick="document.getElementById('mobile-modal').style.display='none'" style="width:100%;background:transparent;border:none;padding:8px;font-size:12px;color:var(--color-text-secondary);cursor:pointer;margin-top:4px;">Batal</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="desktop-frame">
+    <div class="desktop-bar">
+      <div class="db-dot" style="background:#E24B4A;"></div>
+      <div class="db-dot" style="background:#EF9F27;"></div>
+      <div class="db-dot" style="background:#639922;"></div>
+      <div style="flex:1;margin-left:8px;">
+        <div style="background:var(--color-background-secondary);border-radius:4px;padding:3px 10px;font-size:10px;color:var(--color-text-secondary);display:inline-block;">rr-fish-jombang.com/produk/bibit-gurame</div>
+      </div>
+    </div>
+    <div class="desktop-body">
+      <div class="nav" style="padding:10px 20px;">
+        <div class="nav-logo">
+          <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></div>
+          <div class="nav-name">RR Fish <span>Jombang</span></div>
+        </div>
+        <div class="nav-links">
+          <a href="#">Beranda</a>
+          <a href="#">Produk</a>
+          <a href="#">Galeri</a>
+          <a href="#">Tentang</a>
+        </div>
+        <button style="background:#1D9E75;color:#fff;border:none;padding:7px 14px;border-radius:var(--border-radius-md);font-size:12px;font-weight:500;cursor:pointer;">Hubungi Kami</button>
+      </div>
+
+      <div style="padding:8px 20px;border-bottom:0.5px solid var(--color-border-tertiary);">
+        <div class="breadcrumb" style="padding:0;">
+          <a href="#">Beranda</a>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+          <a href="#">Produk</a>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+          <span>Bibit Gurame</span>
+        </div>
+      </div>
+
+      <div class="desktop-inner">
+        <div class="desktop-product-layout">
+          <div class="desktop-left">
+            <div class="desktop-product-img">
+              <img src="/mnt/user-data/uploads/FB_IMG_1775458519172.jpg" alt="Bibit Gurame" />
+              <div class="img-badge">Musim Panen</div>
+            </div>
+            <div class="thumb-row">
+              <div class="thumb active"><img src="/mnt/user-data/uploads/FB_IMG_1775458519172.jpg" alt="" /></div>
+              <div class="thumb"><img src="/mnt/user-data/uploads/FB_IMG_1775458518680.jpg" alt="" /></div>
+              <div class="thumb" style="background:#EAF3DE;font-size:18px;display:flex;align-items:center;justify-content:center;">+3</div>
+            </div>
+          </div>
+
+          <div class="desktop-right">
+            <div class="desktop-name">Bibit Gurame</div>
+            <div class="desktop-tagline">Bibit unggul siap tebar dari kolam budidaya RR Fish Jombang. Sehat, aktif, dan dipanen fresh sesuai pesanan.</div>
+
+            <div class="badges-row">
+              <span class="badge badge-green">Tersedia</span>
+              <span class="badge badge-green">Musim Panen</span>
+              <span class="badge badge-blue">Jawa & Kalimantan</span>
+            </div>
+
+            <div class="price-block" style="margin-bottom:12px;">
+              <div class="price-block-title">Harga per ukuran</div>
+              <div class="price-tiers">
+                <div class="price-row"><span class="price-size">Ukuran 3 cm</span><span class="price-val">Rp 900/ekor</span></div>
+                <div class="price-row"><span class="price-size">Ukuran 5 cm</span><span class="price-val">Rp 1.200/ekor</span></div>
+                <div class="price-row"><span class="price-size">Ukuran 7 cm</span><span class="price-val">Rp 1.600/ekor</span></div>
+              </div>
+            </div>
+
+            <div class="desc-text" style="font-size:12px;color:var(--color-text-secondary);line-height:1.6;margin-bottom:10px;">Minimum order 100 ekor. Packing sistem oksigen, aman pengiriman jauh. Pengiriman ke seluruh Jawa & Kalimantan.</div>
+
+            <div class="form-card">
+              <div class="form-card-title">Form pre-order</div>
+              <div class="form-row">
+                <div class="form-field"><label>Nama lengkap</label><input type="text" placeholder="Nama kamu" /></div>
+                <div class="form-field"><label>Asal / kota</label><input type="text" placeholder="Contoh: Surabaya" /></div>
+              </div>
+              <div class="form-full"><label>Jumlah pesanan</label>
+                <div class="radio-grid">
+                  <label class="radio-grid-opt"><input type="radio" name="d-jml"> 100 – 500 ekor</label>
+                  <label class="radio-grid-opt"><input type="radio" name="d-jml"> 500 – 1.000 ekor</label>
+                  <label class="radio-grid-opt"><input type="radio" name="d-jml"> lebih dari 1.000 ekor</label>
+                </div>
+              </div>
+              <div class="form-full"><label>Metode pengiriman</label>
+                <div class="radio-grid">
+                  <label class="radio-grid-opt"><input type="radio" name="d-krm"> Ambil sendiri</label>
+                  <label class="radio-grid-opt"><input type="radio" name="d-krm"> Ekspedisi / cargo (Jawa)</label>
+                  <label class="radio-grid-opt"><input type="radio" name="d-krm"> Ekspedisi / cargo (Kalimantan)</label>
+                  <label class="radio-grid-opt"><input type="radio" name="d-krm"> Kurir / kendaraan lokal</label>
+                </div>
+              </div>
+              <div class="form-full"><label>Catatan (opsional)</label><input type="text" placeholder="Ukuran spesifik, waktu kirim, dll." /></div>
+              <button class="btn-wa-desktop">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                Lanjut via WhatsApp
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

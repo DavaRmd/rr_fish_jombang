@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+/* ===========================
+   Theme — Tailwind CSS v4
+   Brand colors & design tokens
+   =========================== */
+@theme inline {
+  /* Brand colors */
+  --color-brand: #1D9E75;
+  --color-brand-dark: #0F6E56;
+  --color-brand-light: #EAF3DE;
+  --color-brand-text: #27500A;
+
+  /* Accent colors */
+  --color-danger: #E24B4A;
+  --color-danger-light: #FCEBEB;
+  --color-danger-text: #791F1F;
+
+  --color-warning: #EF9F27;
+  --color-warning-light: #FAEEDA;
+  --color-warning-text: #633806;
+
+  --color-info: #3B82F6;
+  --color-info-light: #E6F1FB;
+  --color-info-text: #0C447C;
+
+  /* Layout colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Fonts */
+  --font-sans: system-ui, -apple-system, sans-serif;
+}
+
+/* ===========================
+   CSS Variables
+   =========================== */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* ===========================
+   Base Styles
+   =========================== */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: #1D9E75;
+  color: white;
+}
+
+/* ===========================
+   Animations
+   =========================== */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+

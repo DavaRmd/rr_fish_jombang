@@ -1,0 +1,601 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+
+.phone-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 0;
+  background: var(--color-background-secondary);
+  border-radius: var(--border-radius-lg);
+}
+
+.phone {
+  width: 375px;
+  background: var(--color-background-primary);
+  border-radius: 24px;
+  border: 0.5px solid var(--color-border-secondary);
+  overflow: hidden;
+  font-size: 14px;
+  color: var(--color-text-primary);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  position: sticky;
+  top: 0;
+  background: var(--color-background-primary);
+  z-index: 10;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-icon {
+  width: 28px; height: 28px;
+  background: #1D9E75;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+.nav-name { font-weight: 500; font-size: 14px; }
+.nav-name span { color: #1D9E75; }
+.hamburger { display: flex; flex-direction: column; gap: 4px; cursor: pointer; }
+.hamburger div { width: 20px; height: 1.5px; background: var(--color-text-primary); border-radius: 2px; }
+
+.hero {
+  padding: 32px 16px 28px;
+  background: linear-gradient(160deg, #EAF3DE 0%, #E1F5EE 100%);
+  position: relative;
+  overflow: hidden;
+}
+.hero-badge {
+  display: inline-block;
+  background: #1D9E75;
+  color: #fff;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+.hero-title {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 8px;
+  color: var(--color-text-primary);
+}
+.hero-title em { color: #0F6E56; font-style: normal; }
+.hero-sub {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.hero-btns { display: flex; gap: 8px; }
+.btn-primary {
+  background: #1D9E75;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: var(--border-radius-md);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  flex: 1;
+}
+.btn-outline {
+  background: transparent;
+  color: #1D9E75;
+  border: 1px solid #1D9E75;
+  padding: 10px 18px;
+  border-radius: var(--border-radius-md);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  flex: 1;
+}
+.hero-stats {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 0.5px solid rgba(15,110,86,0.2);
+}
+.stat-item { text-align: center; flex: 1; }
+.stat-num { font-size: 18px; font-weight: 500; color: #0F6E56; }
+.stat-label { font-size: 10px; color: var(--color-text-secondary); margin-top: 2px; }
+
+.section { padding: 24px 16px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.section-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #1D9E75;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.section-title { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
+.section-sub { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 16px; line-height: 1.5; }
+
+.product-grid { display: flex; flex-direction: column; gap: 12px; }
+.product-card {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  display: flex;
+}
+.product-img {
+  width: 90px;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.product-img.patin { background: #E1F5EE; }
+.product-img.lele { background: #EAF3DE; }
+.product-img.gurame { background: #E6F1FB; }
+.product-img.nila { background: #FAEEDA; }
+.product-info { padding: 12px; flex: 1; }
+.product-name { font-weight: 500; font-size: 14px; margin-bottom: 2px; }
+.product-size { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 6px; }
+.product-price { font-size: 15px; font-weight: 500; color: #0F6E56; margin-bottom: 6px; }
+.product-footer { display: flex; align-items: center; justify-content: space-between; }
+.badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.badge-green { background: #EAF3DE; color: #27500A; }
+.badge-amber { background: #FAEEDA; color: #633806; }
+.badge-red { background: #FCEBEB; color: #791F1F; }
+.btn-order {
+  background: #1D9E75;
+  color: #fff;
+  border: none;
+  font-size: 11px;
+  padding: 5px 12px;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.cara-order { display: flex; flex-direction: column; gap: 12px; }
+.step-row { display: flex; gap: 12px; align-items: flex-start; }
+.step-num {
+  width: 28px; height: 28px;
+  background: #1D9E75;
+  color: #fff;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 500;
+  flex-shrink: 0;
+}
+.step-text { padding-top: 4px; }
+.step-title { font-weight: 500; font-size: 13px; }
+.step-desc { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
+
+.gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.gallery-item {
+  border-radius: var(--border-radius-md);
+  aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+}
+.gallery-item:nth-child(1) { background: #E1F5EE; }
+.gallery-item:nth-child(2) { background: #EAF3DE; }
+.gallery-item:nth-child(3) { background: #E6F1FB; }
+.gallery-item:nth-child(4) { background: #FAEEDA; }
+
+.testimonial-list { display: flex; flex-direction: column; gap: 10px; }
+.testi-card {
+  background: var(--color-background-secondary);
+  border-radius: var(--border-radius-md);
+  padding: 12px;
+}
+.testi-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: #1D9E75;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex; align-items: center; justify-content: center;
+}
+.avatar.b { background: #0F6E56; }
+.testi-name { font-weight: 500; font-size: 13px; }
+.testi-loc { font-size: 11px; color: var(--color-text-secondary); }
+.testi-stars { color: #BA7517; font-size: 12px; margin-bottom: 4px; }
+.testi-text { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+
+.footer {
+  background: #173404;
+  color: #C0DD97;
+  padding: 24px 16px;
+}
+.footer-logo { font-weight: 500; font-size: 16px; color: #EAF3DE; margin-bottom: 4px; }
+.footer-tagline { font-size: 12px; color: #639922; margin-bottom: 16px; }
+.footer-info { font-size: 12px; line-height: 1.8; color: #9FE1CB; margin-bottom: 16px; }
+.footer-info strong { color: #C0DD97; }
+.footer-copy { font-size: 11px; color: #3B6D11; border-top: 0.5px solid #27500A; padding-top: 12px; }
+
+.wa-float {
+  position: sticky;
+  bottom: 12px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 16px;
+  pointer-events: none;
+}
+.wa-btn {
+  background: #25D366;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 100;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0;
+}
+.modal-overlay.open { display: flex; }
+.modal-sheet {
+  background: var(--color-background-primary);
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  max-width: 375px;
+  padding: 20px 16px 32px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-handle {
+  width: 36px; height: 4px;
+  background: var(--color-border-secondary);
+  border-radius: 2px;
+  margin: 0 auto 16px;
+}
+.modal-title { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+.modal-subtitle { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 16px; }
+.field-label { font-size: 12px; font-weight: 500; margin-bottom: 6px; color: var(--color-text-secondary); }
+.field { margin-bottom: 14px; }
+.field input, .field select {
+  width: 100%;
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: var(--border-radius-md);
+  padding: 9px 12px;
+  font-size: 13px;
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+}
+.radio-group { display: flex; flex-direction: column; gap: 8px; }
+.radio-option {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  font-size: 13px;
+}
+.radio-option input { width: 14px; height: 14px; accent-color: #1D9E75; flex-shrink: 0; }
+.btn-wa {
+  width: 100%;
+  background: #25D366;
+  color: #fff;
+  border: none;
+  padding: 13px;
+  border-radius: var(--border-radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.phone-scroll {
+  max-height: 680px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.phone-scroll::-webkit-scrollbar { display: none; }
+</style>
+
+<div class="phone-wrap">
+  <div class="phone">
+    <div class="nav">
+      <div class="nav-logo">
+        <div class="nav-icon">🐟</div>
+        <div class="nav-name">Benih<span>Jaya</span></div>
+      </div>
+      <div class="hamburger">
+        <div></div><div></div><div></div>
+      </div>
+    </div>
+
+    <div class="phone-scroll" id="scroll-area">
+
+      <div class="hero">
+        <div class="hero-badge">Pengiriman ke Jawa & Kalimantan</div>
+        <div class="hero-title">Bibit Ikan Berkualitas<br>dari <em>Kebun Sendiri</em></div>
+        <div class="hero-sub">Patin, Lele, Gurame, Nila — ukuran 3–7 cm siap kirim. Melayani perorangan hingga partai besar.</div>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="openModal('Bibit Pilihan')">Pesan Sekarang</button>
+          <button class="btn-outline">Lihat Produk</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Kolam aktif</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">4</div>
+            <div class="stat-label">Jenis bibit</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">Jawa</div>
+            <div class="stat-label">& Kalimantan</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Produk Kami</div>
+        <div class="section-title">Katalog Bibit Ikan</div>
+        <div class="section-sub">Harga update berkala sesuai kondisi pasar. Stok terbatas.</div>
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="product-img patin">🐟</div>
+            <div class="product-info">
+              <div class="product-name">Bibit Patin</div>
+              <div class="product-size">Ukuran 5–7 cm</div>
+              <div class="product-price">Rp 350/ekor</div>
+              <div class="product-footer">
+                <span class="badge badge-green">Tersedia</span>
+                <button class="btn-order" onclick="openModal('Bibit Patin')">Pre-order</button>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img lele">🐠</div>
+            <div class="product-info">
+              <div class="product-name">Bibit Lele</div>
+              <div class="product-size">Ukuran 3–5 cm</div>
+              <div class="product-price">Rp 180/ekor</div>
+              <div class="product-footer">
+                <span class="badge badge-amber">Hampir Habis</span>
+                <button class="btn-order" onclick="openModal('Bibit Lele')">Pre-order</button>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img gurame">🐡</div>
+            <div class="product-info">
+              <div class="product-name">Bibit Gurame</div>
+              <div class="product-size">Ukuran 5–7 cm</div>
+              <div class="product-price">Rp 1.200/ekor</div>
+              <div class="product-footer">
+                <span class="badge badge-green">Musim Panen</span>
+                <button class="btn-order" onclick="openModal('Bibit Gurame')">Pre-order</button>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img nila">🦈</div>
+            <div class="product-info">
+              <div class="product-name">Bibit Nila</div>
+              <div class="product-size">Ukuran 3–5 cm</div>
+              <div class="product-price">Rp 220/ekor</div>
+              <div class="product-footer">
+                <span class="badge badge-red">Habis</span>
+                <button class="btn-order" onclick="openModal('Bibit Nila')">Pre-order</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Cara Pesan</div>
+        <div class="section-title">Mudah & Cepat</div>
+        <div class="section-sub">Pemesanan langsung via WhatsApp, tidak ada ribet.</div>
+        <div class="cara-order">
+          <div class="step-row">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <div class="step-title">Pilih produk</div>
+              <div class="step-desc">Lihat katalog, pilih jenis dan cek stok</div>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <div class="step-title">Isi form pre-order</div>
+              <div class="step-desc">Nama, kota, jumlah, dan metode pengiriman</div>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <div class="step-title">Klik "Lanjut via WhatsApp"</div>
+              <div class="step-desc">Pesan otomatis terisi, tinggal kirim</div>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="step-num">4</div>
+            <div class="step-text">
+              <div class="step-title">Konfirmasi & selesai</div>
+              <div class="step-desc">Negosiasi harga dan jadwal pengiriman langsung di WhatsApp</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Galeri</div>
+        <div class="section-title">Kolam & Aktivitas</div>
+        <div class="section-sub">Foto nyata dari kebun budidaya kami.</div>
+        <div class="gallery-grid">
+          <div class="gallery-item">🎣</div>
+          <div class="gallery-item">🌿</div>
+          <div class="gallery-item">💧</div>
+          <div class="gallery-item">🐟</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Testimoni</div>
+        <div class="section-title">Kata Pembeli</div>
+        <div class="section-sub">Sudah dipercaya banyak peternak di Jawa dan Kalimantan.</div>
+        <div class="testimonial-list">
+          <div class="testi-card">
+            <div class="testi-header">
+              <div class="avatar">BH</div>
+              <div>
+                <div class="testi-name">Budi Hartono</div>
+                <div class="testi-loc">Semarang, Jawa Tengah</div>
+              </div>
+            </div>
+            <div class="testi-stars">★★★★★</div>
+            <div class="testi-text">Bibit patin-nya sehat semua, tidak ada yang mati dalam pengiriman. Packing rapi, responsif. Sudah langganan 3x.</div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-header">
+              <div class="avatar b">SR</div>
+              <div>
+                <div class="testi-name">Siti Rahayu</div>
+                <div class="testi-loc">Banjarmasin, Kalimantan Selatan</div>
+              </div>
+            </div>
+            <div class="testi-stars">★★★★★</div>
+            <div class="testi-text">Pesan 1.000 ekor lele, sampai selamat semua. Penjual sabar menjawab pertanyaan saya yang banyak. Recommended!</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="footer-logo">🐟 BenihJaya</div>
+        <div class="footer-tagline">Mitra terpercaya para peternak ikan</div>
+        <div class="footer-info">
+          <strong>Area Pengiriman:</strong><br>
+          Pulau Jawa (utama) · Kalimantan<br><br>
+          <strong>Jam Operasional:</strong><br>
+          Senin–Sabtu, 08.00–17.00 WIB<br><br>
+          <strong>WhatsApp:</strong> 0812-xxxx-xxxx
+        </div>
+        <div class="footer-copy">© 2025 BenihJaya. Semua hak dilindungi.</div>
+      </div>
+
+    </div>
+
+    <div class="wa-float">
+      <button class="wa-btn" onclick="openModal('Bibit Pilihan')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Chat WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Form Pre-Order</div>
+    <div class="modal-subtitle" id="modal-subtitle">Isi data berikut, pesan WA otomatis terbuat</div>
+
+    <div class="field">
+      <div class="field-label">Nama lengkap</div>
+      <input type="text" id="f-nama" placeholder="Nama kamu" />
+    </div>
+    <div class="field">
+      <div class="field-label">Asal / kota</div>
+      <input type="text" id="f-kota" placeholder="Contoh: Surabaya" />
+    </div>
+    <div class="field">
+      <div class="field-label">Jumlah pesanan</div>
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" name="jumlah" value="100–500 ekor"> 100 – 500 ekor</label>
+        <label class="radio-option"><input type="radio" name="jumlah" value="500–1.000 ekor"> 500 – 1.000 ekor</label>
+        <label class="radio-option"><input type="radio" name="jumlah" value=">1.000 ekor"> lebih dari 1.000 ekor</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">Metode pengiriman</div>
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" name="kirim" value="Ambil sendiri"> Ambil sendiri</label>
+        <label class="radio-option"><input type="radio" name="kirim" value="Ekspedisi/cargo (Jawa)"> Ekspedisi / cargo (Jawa)</label>
+        <label class="radio-option"><input type="radio" name="kirim" value="Ekspedisi/cargo (Kalimantan)"> Ekspedisi / cargo (Kalimantan)</label>
+        <label class="radio-option"><input type="radio" name="kirim" value="Kurir/kendaraan lokal"> Kurir / kendaraan lokal</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">Catatan (opsional)</div>
+      <input type="text" id="f-catatan" placeholder="Ukuran spesifik, waktu, dll." />
+    </div>
+
+    <button class="btn-wa" onclick="submitWA()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Lanjut via WhatsApp
+    </button>
+    <button onclick="closeModal()" style="width:100%;background:transparent;border:none;padding:10px;font-size:13px;color:var(--color-text-secondary);cursor:pointer;margin-top:4px;">Batal</button>
+  </div>
+</div>
+
+<script>
+let selectedProduct = 'Bibit Pilihan';
+
+function openModal(produk) {
+  selectedProduct = produk;
+  document.getElementById('modal-subtitle').textContent = 'Produk: ' + produk;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+}
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+function submitWA() {
+  const nama = document.getElementById('f-nama').value || '[Nama]';
+  const kota = document.getElementById('f-kota').value || '[Kota]';
+  const jumlah = document.querySelector('input[name="jumlah"]:checked');
+  const kirim = document.querySelector('input[name="kirim"]:checked');
+  const catatan = document.getElementById('f-catatan').value;
+
+  const jml = jumlah ? jumlah.value : '[Jumlah]';
+  const krm = kirim ? kirim.value : '[Metode pengiriman]';
+  const cat = catatan ? ' ' + catatan + '.' : '';
+
+  const msg = `Halo, saya ${nama} dari ${kota}. Saya tertarik memesan ${selectedProduct} sebanyak ${jml} dengan metode pengiriman ${krm}.${cat} Mohon info harga dan ketersediaan stoknya. 🙏`;
+
+  sendPrompt('Contoh pesan WhatsApp yang akan dikirim: "' + msg + '"');
+  closeModal();
+}
+</script>

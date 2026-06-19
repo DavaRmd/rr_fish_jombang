@@ -119,7 +119,7 @@ export default function ProductTable({ initialProducts }: ProductTableProps) {
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-md bg-gray-100 flex-shrink-0 overflow-hidden border border-gray-200">
-                          {product.image_url ? (
+                          {product.image_url && product.image_url.trim() !== '' ? (
                             <img src={product.image_url} alt={product.name} className="w-full h-full object-cover" />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-gray-400">

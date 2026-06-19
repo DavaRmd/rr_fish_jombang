@@ -22,7 +22,7 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
             style={{ aspectRatio: '1' }}
             onClick={() => setSelectedImage(image)}
           >
-            {image.image_url && (
+            {image.image_url && image.image_url.trim() !== '' && (
               <Image
                 src={image.image_url}
                 alt={image.caption || 'Gallery image'}
@@ -65,7 +65,7 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
 
             {/* Image */}
             <div className="relative bg-black rounded-lg overflow-hidden" style={{ aspectRatio: '4/3' }}>
-              {selectedImage.image_url && (
+              {selectedImage.image_url && selectedImage.image_url.trim() !== '' && (
                 <Image
                   src={selectedImage.image_url}
                   alt={selectedImage.caption || 'Gallery image'}

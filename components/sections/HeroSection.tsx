@@ -1,5 +1,4 @@
 import Button from '@/components/ui/Button'
-import Link from 'next/link'
 
 export default function HeroSection() {
   return (
@@ -51,7 +50,7 @@ export default function HeroSection() {
           </div>
 
           {/* Image / Hero Visual */}
-          <div className="relative animate-slide-up h-80 md:h-full min-h-[400px] rounded-2xl overflow-hidden shadow-xl aspect-[4/3] md:aspect-auto">
+          <div className="relative animate-slide-up w-full aspect-[4/3] md:aspect-auto md:h-full md:min-h-[400px] rounded-2xl overflow-hidden shadow-xl">
              <div className="absolute inset-0 bg-brand/10 z-10" />
              {/* Note: In production we will use Next/Image, using an img tag as placeholder for now since we don't have concrete hero images yet. */}
              <img 

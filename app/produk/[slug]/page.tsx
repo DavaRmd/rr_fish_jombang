@@ -71,7 +71,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title: `${product.name} | RR Fish Jombang`,
       description: product.description || `Pesan ${product.name} berkualitas dari RR Fish Jombang.`,
-      images: product.image_url ? [{ url: product.image_url, width: 1200, height: 630 }] : [],
+      images: product.image_url && product.image_url.trim() !== '' ? [{ url: product.image_url, width: 1200, height: 630 }] : [],
     },
   }
 }

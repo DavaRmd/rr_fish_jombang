@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import Badge from '@/components/ui/Badge'
 import type { ProductBadge } from '@/types'
 
@@ -15,7 +14,7 @@ interface ProductGalleryProps {
 export default function ProductGallery({ imageUrl, productName, badge, showThumbnail = true }: ProductGalleryProps) {
   const [isOpen, setIsOpen] = useState(false)
 
-  if (!imageUrl) {
+  if (!imageUrl || imageUrl.trim() === '') {
     return (
       <div className="relative w-full bg-brand-light rounded-lg overflow-hidden mb-4" style={{ aspectRatio: '4/3' }}>
         <div className="w-full h-full flex flex-col items-center justify-center text-gray-400">

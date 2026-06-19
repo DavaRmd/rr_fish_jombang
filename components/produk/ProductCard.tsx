@@ -1,5 +1,3 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import Badge, { getBadgeVariant } from '@/components/ui/Badge'
 import Button from '@/components/ui/Button'
 import { formatPriceRange } from '@/lib/utils'
@@ -12,15 +10,14 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const badgeVariant = getBadgeVariant(product.status, product.badge)
   
-  // Hitung harga minimum dan maksimum
+  // Hitung harga minimum
   const minPrice = Math.min(...product.sizes.map(s => s.price_min))
-  const maxPrice = Math.max(...product.sizes.map(s => s.price_max))
 
   return (
     <div className="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-gray-100 overflow-hidden text-left flex flex-col transition-shadow">
       {/* Gambar */}
       <div className="relative aspect-[4/3] w-full bg-gray-50 overflow-hidden">
-        {product.image_url ? (
+        {product.image_url && product.image_url.trim() !== '' ? (
           <img 
             src={product.image_url} 
             alt={product.name}

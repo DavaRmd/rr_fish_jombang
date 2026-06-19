@@ -35,7 +35,7 @@ export default async function GaleriSection() {
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
           {(gallery as GalleryItem[]).map((item) => (
             <div key={item.id} className="relative aspect-square group overflow-hidden bg-gray-200 rounded-xl">
-              {item.image_url ? (
+              {item.image_url && item.image_url.trim() !== '' ? (
                  <img 
                    src={item.image_url} 
                    alt={item.caption ?? 'Galeri RR Fish Jombang'}

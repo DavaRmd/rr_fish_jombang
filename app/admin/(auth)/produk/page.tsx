@@ -21,18 +21,13 @@ export default async function AdminProdukPage() {
   }
 
   return (
-    <div className="flex-1 md:ml-0 pb-20 md:pb-0">
-      {/* Top Bar (Mobile) */}
-      <div className="md:hidden sticky top-0 bg-white border-b border-gray-200 px-4 py-3 z-10">
-        <h1 className="text-lg font-bold text-gray-900">Kelola Produk</h1>
-      </div>
-
+    <div className="flex-1 pb-20 md:pb-0 flex flex-col">
       {/* Content */}
-      <div className="p-4 md:p-6 mt-12 md:mt-0">
+      <div className="flex-grow p-4 md:p-6 pt-20 md:pt-6">
         <div className="max-w-6xl">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 hidden md:block">Kelola Produk</h1>
+              <h1 className="text-xl md:text-2xl font-bold text-gray-900">Kelola Produk</h1>
               <p className="text-gray-500 text-sm mt-1">Atur daftar produk bibit ikan beserta harganya</p>
             </div>
             <Link
